@@ -1,0 +1,10 @@
+.text {
+    width: 75%; 
+    padding: 10px;
+    margin: 50px auto;
+    border-top: 1px solid rgb(218, 205, 205); 
+    border-bottom: 1px solid rgb(218, 205, 205); 
+    line-height: 150%;
+    user-select: none;
+
+}

@@ -1,0 +1,30 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px auto;
+    width: 50%;
+}
+
+.settingsField {
+    align-self: baseline;
+    margin: 10px 0;
+}
+
+.settings button {
+    height: 50px;
+    width: 120px;
+    margin: 20px auto 0 auto;
+    border: 2px solid rgb(24, 23, 23);
+    color: rgb(24, 23, 23);
+    border-radius: 3px;
+    background-color: rgb(255, 254, 254);
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(24, 23, 23);
+    color: rgb(255, 254, 254); 
+}

@@ -1,0 +1,10 @@
+.typing {
+    width: 75%;
+    margin: 50px auto; 
+}
+
+.typing textarea {
+    padding: 10px;
+    width: 100%;
+    height: 300px;
+}

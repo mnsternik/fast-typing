@@ -1,0 +1,33 @@
+.nav {
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    list-style: none;
+    padding-right: 15px;
+}
+
+li {
+    text-align: center;
+    padding-right: 20px;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    padding-bottom: auto;
+    font-size: 15px;
+    color: rgb(55, 152, 231);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+a:hover {
+    color:rgb(18, 107, 240);
+}
