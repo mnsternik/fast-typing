@@ -1,10 +1,14 @@
 import Main from "./components/Main/Main";
+import { GameContextProvider } from "./store/game-context";
 
 function App() {
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <GameContextProvider>
+      <div className="App">
+        <Main />
+      </div>
+    </GameContextProvider>
+
   );
 }
 
