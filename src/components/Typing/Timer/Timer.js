@@ -14,6 +14,7 @@ const Timer = () => {
             gameCtx.getTimeHandler(t => t + 1)
         }, 1000);
         return () => { clearInterval(timer) }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

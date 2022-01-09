@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'; 
+import React, { useState, useContext } from 'react'; 
 
 import GameContext from '../../store/game-context';
 import Timer from './Timer/Timer';
@@ -11,7 +11,6 @@ const Typing = (props) => {
 
     const [charsWritten, setCharsWritten] = useState(0); 
     const [finished, setFinished] = useState(false); 
-    const [mistakes, setMistakes] = useState(0);
 
     const textChangeHandler = (event) => {
         const userText = event.target.value; 
@@ -19,6 +18,7 @@ const Typing = (props) => {
         if (userText.length === gameCtx.text.length) {
             setFinished(true); 
             calculateScore(userText); 
+            props.onEndTyping(); 
         }
     }
 
@@ -29,13 +29,11 @@ const Typing = (props) => {
         orgText.forEach((char, i) => {
             if (char !== userText[i]) mistakes += 1;  
         })
-        setMistakes(mistakes); 
+        gameCtx.getMistakesHandler(mistakes); 
     }
 
     return (
         <div className={classes.typing}>
-            {finished && <p>Finished! Mistakes: {mistakes}</p>}
-            {finished && <p>Time: {gameCtx.time}s</p>}
             {!finished && <Timer />}
             <p>{`Characters left: ${charsWritten}/${gameCtx.text.length}`}</p>
             <textarea onChange={textChangeHandler}/>
