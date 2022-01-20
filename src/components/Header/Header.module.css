@@ -1,6 +1,22 @@
 .header {
-    width: 100%;
-    height: 200px; 
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    text-align: center;
     margin: 0 auto 25px auto; 
-    background-color: rgb(136, 181, 221);
+}
+
+.header h1 {
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1px;
+    color: rgb(36, 38, 39);
+    margin: auto 10px;
+    font-size: 38px;
+    width: 270px;
+}
+
+.header img {
+    margin: auto 10px;
+    height: 150px;
 }

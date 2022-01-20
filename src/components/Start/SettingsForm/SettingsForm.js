@@ -13,12 +13,10 @@ const SettingsForm = (props) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-
         const settings = {
             language: language.current.value,
             textLength: textLength.current.value
-        }
-
+        };
         gameCtx.getSettingsHandler(settings); 
         props.onStart(); 
     }
@@ -27,14 +25,18 @@ const SettingsForm = (props) => {
         <form className={classes.settings} id="settings" onSubmit={submitHandler}>
             <div className={classes.settingsField}>
                 <label htmlFor="language">Language: </label>
-                <select id="language" name="languages" form="settings" ref={language}>
+                <select id="language" name="language" form="settings" ref={language}>
                     <option value="english">English</option>
-                    <option value="polish">Polish</option>
+                    <option value="polski">Polski</option>
                 </select>
             </div>
             <div className={classes.settingsField}>
-                <label htmlFor="length">Length: </label>
-                <input id="length" type="number" ref={textLength}></input>
+                <label htmlFor="length">Text length: </label>
+                <select id="length" name="length" form="settings" ref={textLength}>
+                    <option value="short">Short</option>
+                    <option value="medium">Medium</option>
+                    <option value="long">Long</option>
+                </select>
             </div>
             <button>START</button>
         </form>

@@ -11,7 +11,7 @@ const Text = (props) => {
 
     return (
         <div className={classes.text}>
-            <h2>Title:</h2>
+            <h2>TEXT TO WRITE:</h2>
             <p>{gameCtx.text}</p>
         </div>
     )

@@ -1,21 +1,36 @@
-import React, { useContext } from 'react'; 
+import React, { useContext, useRef, useState } from 'react';
 
 import GameContext from '../../store/game-context';
 
-import classes from './Summary.module.css'; 
+import classes from './Summary.module.css';
 
 const Summary = (props) => {
 
+    const [scoreSended, setScoreSended] = useState(false); 
+
     const gameCtx = useContext(GameContext);
+    const nameRef = useRef();
+
+    const submitHandler = (event) => {
+        event.preventDefault();
+        setScoreSended(true); 
+        console.log(nameRef.current.value)
+    }
 
     return (
         <div className={classes.summary}>
             <h2>Finished!</h2>
-            <p>You wrote <span>84 characters</span> in <span>{gameCtx.time} seconds </span> and made <span>{gameCtx.mistakes} mistakes!</span></p>
+            <p>You wrote <span>{gameCtx.text.length} characters</span> in <span>{gameCtx.time} seconds </span> and made <span>{gameCtx.mistakes} mistakes!</span></p>
+            {!scoreSended ? <form className={classes.save} id="save" onSubmit={submitHandler}>
+                <label htmlFor="name">Your name: </label>
+                <input id="name" type="string" ref={nameRef}></input>
+                <button className={classes.sendBtn}>SAVE</button>
+            </form> : <p>Score sended!</p>}
+            <div className={classes.buttons}>
+                <button onClick={props.onReplay}>TRY AGAIN</button>
+                <button onClick={props.onShowMenu}>MENU</button>
+            </div>
 
-            {//<p>You wrote <span>{gameCtx.textLength} characters</span> in <span>{gameCtx.time} seconds </span> and made <span>{gameCtx.mistakes} mistakes!</span></p>
-            }
-            <button>TRY AGAIN</button>
         </div>
     )
 }

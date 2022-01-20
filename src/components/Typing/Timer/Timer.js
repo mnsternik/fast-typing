@@ -9,17 +9,16 @@ const Timer = () => {
 
     const gameCtx = useContext(GameContext); 
 
+
     useEffect(() => {
-        const timer = setInterval(() => {
-            gameCtx.getTimeHandler(t => t + 1)
-        }, 1000);
-        return () => { clearInterval(timer) }
+        const timer = setInterval(() => gameCtx.getTimeHandler(t => t + 1), 1000);
+        return () =>  clearInterval(timer) 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <div className={classes.timer}>
-            {gameCtx.time}
+            <p><span className={classes.timer__item}> TIME: </span> {gameCtx.time}s</p>
         </div>
     )
 }

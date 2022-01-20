@@ -11,10 +11,15 @@ span {
     font-weight: bold;
 }
 
-.summary button {
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
     height: 60px;
     width: 120px;
-    margin: 20px auto 0 auto;
+    margin: 20px 10px 0 10px;
     border: 2px solid rgb(24, 23, 23);
     color: rgb(24, 23, 23);
     border-radius: 3px;
@@ -24,7 +29,26 @@ span {
     cursor: pointer;
 }
 
-.summary button:hover {
+form {
+    margin: 20px 0; 
+}
+
+.buttons button:hover {
     background-color: rgb(24, 23, 23);
     color: rgb(255, 254, 254); 
 }
+
+.sendBtn {
+    height: 30px;
+    width: 80px; 
+    margin-left: 15px;
+    color: rgb(245, 239, 239);
+    background-color: rgb(31, 29, 29);
+    font-size: 14px; 
+}
+
+.sendBtn:hover {
+    color: rgb(31, 29, 29);
+    background-color: rgb(243, 237, 237);
+}
+

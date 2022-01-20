@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react'; 
+import React, { Fragment } from 'react';
 
-import classes from './Header.module.css'; 
+import classes from './Header.module.css';
 import Nav from './Nav/Nav';
+
+import logo from './../../assets/keyboard.png';
 
 const Header = (props) => {
 
@@ -9,7 +11,8 @@ const Header = (props) => {
         <Fragment>
             <Nav />
             <div className={classes.header}>
-                
+                <img src={logo} />
+                <h1>TYPE FASTER</h1>
             </div>
         </Fragment>
     )
