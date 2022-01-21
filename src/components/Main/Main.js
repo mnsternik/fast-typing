@@ -50,7 +50,9 @@ const Main = () => {
 
     const fetchTextHadnler = () => {
         setIsLoading(true);
-        fetch('https://v2.jokeapi.dev/joke/Any')
+        fetch('https://v2.jokeapi.dev/joke/Any', {
+            method: 'GET'
+        })
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -62,7 +64,6 @@ const Main = () => {
 
     return (
         <div className={classes.main}>
-            <Header />
             {showStart && <Start onStart={startTypingHandler} />}
             {showSummary && <Summary onReplay={replayHandler} onShowMenu={showMenuHandler} />}
             {showTyping && (<Text /> || <p>Loading...</p>)}

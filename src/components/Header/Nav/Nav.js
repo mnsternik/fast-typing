@@ -8,7 +8,7 @@ const Nav = () => {
     return (
         <nav className={classes.nav}>
             <ul>
-                <li><NavLink activeClassName={classes.active} to='/'>Main</NavLink></li>
+                <li><NavLink activeClassName={classes.active} exact to='/'>Main</NavLink></li>
                 <li><NavLink activeClassName={classes.active} to='/scoretable'>Scoretable</NavLink></li>
             </ul>
         </nav>

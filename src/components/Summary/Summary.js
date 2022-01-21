@@ -14,8 +14,24 @@ const Summary = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
         setScoreSended(true); 
+        saveScore(); 
         console.log(nameRef.current.value)
     }
+
+    const saveScore = (scoreData) => {
+        fetch('endpoint here', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            score: scoreData
+          }),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result))
+          .catch((err) => console.log('error'))
+      }
 
     return (
         <div className={classes.summary}>
