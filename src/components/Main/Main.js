@@ -51,7 +51,9 @@ const Main = () => {
     const fetchTextHadnler = () => {
         setIsLoading(true);
         fetch('https://v2.jokeapi.dev/joke/Any', {
-            method: 'GET'
+            method: 'GET',
+            language: gameCtx.language,
+            length: gameCtx.textLength
         })
             .then(response => response.json())
             .then(data => {
@@ -61,6 +63,24 @@ const Main = () => {
             })
             .catch(error => console.log(error))
     }
+
+    /*
+    const fetchTextHadnler = () => {
+        setIsLoading(true);
+        fetch('https://localhost:44310/api/text', {
+            method: 'GET',
+            language: gameCtx.language,
+            length: gameCtx.textLength
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                gameCtx.getTextHandler(data.delivery);
+                setIsLoading(false);
+            })
+            .catch(error => console.log(error))
+    }
+    */
 
     return (
         <div className={classes.main}>
