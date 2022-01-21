@@ -16,7 +16,8 @@ const Typing = (props) => {
 
     useEffect(() => {
         textarea.current.focus();
-    })
+        return () => gameCtx.getMistakesHandler(0);
+    }, [])
 
     const textChangeHandler = (event) => {
         const userText = event.target.value; 
