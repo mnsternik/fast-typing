@@ -50,15 +50,18 @@ const Main = () => {
 
     const fetchTextHadnler = () => {
         setIsLoading(true);
-        fetch('https://v2.jokeapi.dev/joke/Any', {
+        fetch('https://localhost:44310/api/text/3', {
             method: 'GET',
             language: gameCtx.language,
-            length: gameCtx.textLength
+            length: gameCtx.textLength,
+            headers:{ 
+                "Content-Type": "application/json"
+            }
         })
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                gameCtx.getTextHandler(data.delivery);
+                gameCtx.getTextHandler(data.text);
                 setIsLoading(false);
             })
             .catch(error => console.log(error))

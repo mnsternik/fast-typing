@@ -41,7 +41,8 @@ const Typing = (props) => {
     return (
         <div className={classes.typing}>
             {!isFinished && <Timer />}
-            <p><span className={classes.typing__item}>CHARACTERS LEFT: </span>{charsWritten}/{gameCtx.text.length ? gameCtx.text.length : 0 }</p>
+            {//<p><span className={classes.typing__item}>CHARACTERS LEFT: </span>{charsWritten}/{gameCtx.text.length ? gameCtx.text.length : 0 }</p>}
+}
             <textarea onChange={textChangeHandler} ref={textarea}/>
         </div>
     )
