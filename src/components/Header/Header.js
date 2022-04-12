@@ -11,7 +11,7 @@ const Header = (props) => {
         <Fragment>
             <Nav />
             <div className={classes.header}>
-                <img src={logo} />
+                <img src={logo} alt={'Keyboard'} />
                 <h1>TYPE FASTER</h1>
             </div>
         </Fragment>

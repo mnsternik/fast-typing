@@ -4,44 +4,57 @@ import classes from './Scoretable.module.css';
 
 import ScoretableItem from './ScoretableItem/ScoretableItem';
 
+import useHttp from '../../hooks/useHttp';
+
 const Scoretable = () => {
 
-    //const scoreExample = JSON.parse('{"id":1,"language":"Polski","text":"Król Karol kupił królowej Karolinie korale koloru koralowego","lenght":61,"score":[{"id":1,"name":"Rak","mistakes":4,"textId":1}]}')
+    const [scores, setScores] = useState();
 
-    //const [scores, setScores] = useState();
-    const [scores, setScores] = useState(JSON.parse('[{"id":1,"language":"Polski","text":"Król Karol kupił królowej Karolinie korale koloru koralowego","lenght":61,"score":[{"id":1,"name":"Rak","mistakes":4,"textId":1}]}]'));
+    const { isLoading, error, sendRequest: fetchScores } = useHttp();
 
     useEffect(() => {
-        fetch('endpoint here', {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                //setScores(data);
-            })
-            .catch(error => console.log(error))
-    }, [])
+        const transformData = (data) => {
+            const loadedScores = []; 
+                for (const scoreKey in data) {
+                    loadedScores.push({
+                        name: data[scoreKey].name,
+                        time: data[scoreKey].time,
+                        characters: data[scoreKey].textLength,
+                        wordsPerMinute: data[scoreKey].wordsPerMinute,
+                        mistakes: data[scoreKey].mistakes
+                    })
+                }
+                setScores(loadedScores);
+        };
+        fetchScores(
+            { url: 'https://type-faster-fd0c0-default-rtdb.firebaseio.com/scores.json' },
+            transformData
+        );
+    }, [fetchScores]);
 
-    console.log(scores[0])
-    const scoreItems = scores.map((score, i) => {
-        return (
-            <ScoretableItem
-                key={score.id}
-                numeration={i}
-                name={score.score[0].name}
-                language={score.language}
-                lenght={score.lenght}
-                //time={}
-                mistakes={score.score[0].mistakes}
-            />
-        )
-    })
+    let scoreItems = <p>Oops, no scores yet!</p>
+    if (scores) {
+        scoreItems = scores.map((score, i) => {
+            return (
+                <ScoretableItem
+                    key={i}
+                    numeration={i}
+                    name={score.name}
+                    //language={score.language}
+                    characters={score.characters}
+                    time={score.time}
+                    mistakes={score.mistakes}
+                />
+            )
+        })
+    }
 
     return (
         <div className={classes.scoretable}>
             <h1>TOP 10 TYPERS</h1>
-            {scores ? scoreItems : <p>Oops, no scores yet!</p>}
+            {isLoading && <p>Loading...</p>}
+            {error && <p>Something went wrong...</p>}
+            {scoreItems}
         </div>
     )
 }

@@ -33,7 +33,7 @@ const SettingsForm = (props) => {
             <div className={classes.settingsField}>
                 <label htmlFor="length">Text length: </label>
                 <select id="length" name="length" form="settings" ref={textLength}>
-                    <option value="short">short</option>
+                    <option value="short">Short</option>
                     <option value="medium">Medium</option>
                     <option value="long">Long</option>
                 </select>

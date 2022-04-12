@@ -12,7 +12,7 @@ const ScoretableItem = (props) => {
             <div className={classes.item__content}>
                 <p>Name: <span>{props.name}</span></p>
                 <p>Language: <span>{props.language}</span></p>
-                <p>Text length: <span>{props.lenght}</span></p>
+                <p>Text length: <span>{props.characters}</span></p>
                 <p>Mistakes: <span>{props.mistakes}</span></p>
             </div>
 

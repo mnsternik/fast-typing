@@ -10,6 +10,7 @@ const GameContext = createContext({
     getTimeHandler: (time) => { },
     getMistakesHandler: (mistakes) => { },
     getTextHandler: (text) => { },
+    calcWordsPerMinute: () => { },
 })
 
 export const GameContextProvider = (props) => {
@@ -37,14 +38,6 @@ export const GameContextProvider = (props) => {
         setText(text);
     };
 
-    /*function fetchTextHadnler() {
-        fetch('https://v2.jokeapi.dev/joke/Any').then(response => {
-          return response.json(); 
-        }).then(data => {
-          setText(data.joke);
-        })
-      }*/
-
     return (
         <GameContext.Provider
             value={{
@@ -56,7 +49,7 @@ export const GameContextProvider = (props) => {
                 getSettingsHandler: getSettingsHandler,
                 getTimeHandler: getTimeHandler,
                 getMistakesHandler: getMistakesHandler,
-                getTextHandler: getTextHandler
+                getTextHandler: getTextHandler,
             }}>
             {props.children}
         </GameContext.Provider>
