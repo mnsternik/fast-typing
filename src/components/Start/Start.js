@@ -5,8 +5,6 @@ import classes from './Start.module.css';
 
 const Start = (props) => {
 
-
-
     return (
         <div className={classes.start}>
             <h2>Want to test your typing speed?</h2>
