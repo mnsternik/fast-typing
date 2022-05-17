@@ -1,0 +1,17 @@
+button {
+    height: 50px;
+    width: 120px;
+    margin: 20px auto 0 auto;
+    border: 2px solid rgb(71, 69, 69);
+    color: rgb(24, 23, 23);
+    border-radius: 3px;
+    background-color: rgb(255, 254, 254);
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(71, 69, 69);
+    color: rgb(255, 254, 254); 
+}

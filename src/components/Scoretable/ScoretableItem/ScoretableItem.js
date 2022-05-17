@@ -10,12 +10,10 @@ const ScoretableItem = (props) => {
                 <span>{`${props.numeration + 1}.`}</span>
             </div>
             <div className={classes.item__content}>
-                <p>Name: <span>{props.name}</span></p>
-                <p>Language: <span>{props.language}</span></p>
-                <p>Text length: <span>{props.characters}</span></p>
-                <p>Mistakes: <span>{props.mistakes}</span></p>
+                <p className={classes.name}>{props.name}</p>
+                <p>Words per minute: <span>{props.wordsPerMinute.toFixed()}</span></p>
+                <p>Effectiveness: <span>{props.effectiveness.toFixed(2)}%</span></p>
             </div>
-
         </section>
     )
 }

@@ -1,7 +1,12 @@
 .scoretable {
-    margin-top: 50px;
+    margin: 100px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+}
+
+.scoretable h1 {
+    font-weight: 100;
+    margin-bottom: 30px;
 }

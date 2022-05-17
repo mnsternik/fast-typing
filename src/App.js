@@ -9,15 +9,13 @@ import Header from "./components/Header/Header";
 function App() {
   return (
     <GameContextProvider>
-      <div className="App">
         <Header />
-        <Route path="/" exact strict>
-          <Main />
-        </Route>
-        <Route path="/scoretable">
-          <Scoretable />
-        </Route>
-      </div>
+          <Route path="/" exact strict>
+            <Main />
+          </Route>
+          <Route path="/scoretable">
+            <Scoretable />
+          </Route>
     </GameContextProvider>
   );
 }

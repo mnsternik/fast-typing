@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 
 import GameContext from '../../store/game-context';
 import Timer from './Timer/Timer';
+import Button from '../../UI/Button/Button';
 
 import classes from './Typing.module.css'; 
 
@@ -14,13 +15,18 @@ const Typing = (props) => {
     const textarea = useRef(); 
 
     useEffect(() => {
+        textarea.current.scrollIntoView() 
         textarea.current.focus();
+        return (() => {
+            gameCtx.getTimeHandler(0); 
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const textChangeHandler = (event) => {
         const userText = event.target.value; 
         setCharsWritten(userText.length); 
-        if (userText.length >= gameCtx.text.length) {
+        if (userText.length >= gameCtx.textData.text.length) {
             finishTyping(userText); 
         }
     };
@@ -34,7 +40,7 @@ const Typing = (props) => {
 
     const countMistakes = (userTxt) => {
         const userText = userTxt.split(''); 
-        const orgText = gameCtx.text.split(''); 
+        const orgText = gameCtx.textData.text.split(''); 
         orgText.forEach((char, i) => {
             if (char !== userText[i]) {
                 gameCtx.getMistakesHandler(m => m + 1);
@@ -45,8 +51,9 @@ const Typing = (props) => {
     return (
         <div className={classes.typing}>
             {!isFinished && <Timer />}
-            <p><span className={classes.typing__item}>CHARACTERS LEFT: </span>{charsWritten}/{gameCtx.text.length ? gameCtx.text.length : 0 }</p>
+            <p><span className={classes.typing__item}>CHARACTERS LEFT: </span>{charsWritten}/{gameCtx.textData.text ? gameCtx.textData.text.length : 0 }</p>
             <textarea onChange={textChangeHandler} ref={textarea}/>
+            <Button onClick={props.onShowMenu} className={classes.menuBtn}>BACK</Button>
         </div>
     )
 };

@@ -1,5 +1,7 @@
 import React, { useRef, useContext } from 'react';
 
+import Button from '../../../UI/Button/Button';
+
 import GameContext from '../../../store/game-context';
 
 import classes from './SettingsForm.module.css';
@@ -31,14 +33,14 @@ const SettingsForm = (props) => {
                 </select>
             </div>
             <div className={classes.settingsField}>
-                <label htmlFor="length">Text length: </label>
+                <label htmlFor="length">Length: </label>
                 <select id="length" name="length" form="settings" ref={textLength}>
                     <option value="short">Short</option>
                     <option value="medium">Medium</option>
                     <option value="long">Long</option>
                 </select>
             </div>
-            <button>START</button>
+            <Button>START</Button>
         </form>
     )
 }

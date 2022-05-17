@@ -38,8 +38,12 @@ form {
     color: rgb(255, 254, 254); 
 }
 
-.sendBtn {
+.save input {
     height: 30px;
+}
+
+.sendBtn {
+    height: 36px;
     width: 80px; 
     margin-left: 15px;
     color: rgb(245, 239, 239);

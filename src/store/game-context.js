@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 const GameContext = createContext({
     textLength: 0,
     language: '',
-    text: '',
+    textData: '',
     time: 0,
     mistakes: 0,
     getSettingsHandler: (settings) => { },
@@ -17,7 +17,7 @@ export const GameContextProvider = (props) => {
 
     const [language, setLanguage] = useState('');
     const [textLength, setTextLength] = useState(0);
-    const [text, setText] = useState('');
+    const [textData, setTextData] = useState({});
     const [time, setTime] = useState(0);
     const [mistakes, setMistakes] = useState(0);
 
@@ -35,7 +35,7 @@ export const GameContextProvider = (props) => {
     };
 
     const getTextHandler = (text) => {
-        setText(text);
+        setTextData(text);
     };
 
     return (
@@ -43,7 +43,7 @@ export const GameContextProvider = (props) => {
             value={{
                 textLength: textLength,
                 language: language,
-                text: text,
+                textData: textData,
                 time: time,
                 mistakes: mistakes,
                 getSettingsHandler: getSettingsHandler,

@@ -11,5 +11,14 @@
 
 .text h2 {
     font-size: 15px;
-    color: rgb(155, 147, 147);
+    color: rgb(78, 72, 72);
+}
+
+.footer {
+    font-size: 12px;
+    text-align: right;
+}
+
+.footer span {
+    font-style: italic;
 }

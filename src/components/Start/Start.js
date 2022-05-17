@@ -5,12 +5,10 @@ import classes from './Start.module.css';
 
 const Start = (props) => {
 
-
-
     return (
         <div className={classes.start}>
-            <h2>Want to test your typing speed?</h2>
-            <p>Check text's options below and start when you ready!</p>
+            <h2>The average typing speed is around 40 words per minute, are you faster?</h2>
+            <h2>Check text's options below, and start when you're ready!</h2>
             <SettingsForm onStart={props.onStart} />
         </div>
     )

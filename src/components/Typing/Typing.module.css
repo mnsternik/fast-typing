@@ -1,6 +1,7 @@
 .typing {
     width: 75%;
     margin: 0 auto 25px auto; 
+    padding-bottom: 56px;
 }
 
 .typing textarea {
@@ -12,5 +13,9 @@
 .typing__item {
     font-size: 15px;
     font-weight: bold;
-    color: rgb(155, 147, 147);
+    color: rgb(78, 72, 72);
+}
+
+.menuBtn {
+    margin: 0 auto;
 }

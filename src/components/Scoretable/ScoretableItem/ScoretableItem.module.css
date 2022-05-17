@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: flex-start;
     text-align: left;
-    max-width: 45rem;
+    padding:10px 0;
+    max-width: 50rem;
     margin: 0 auto;
     letter-spacing: 1px;
     border-top: 1px solid rgb(228, 224, 224);
@@ -13,26 +14,35 @@ span {
     font-weight: 500;
 }
 
+.name {
+    font-size: 20px;
+    font-weight: 600;
+    color:rgb(102, 97, 97); 
+    text-transform: uppercase;
+}
+
 .item__content {
-    align-items: flex-start;
+    display: flex; 
+    flex-direction: column;
 }
 
 .item p {
-    width: 200px;
-    line-height: 12px;
+    width: 250px;
+    line-height: 0;
     overflow-wrap: break-word;
     padding-top: 0;
 }
 
 .item__numeration {
     display: flex;
-    align-items: flex-start;
-    margin: 0 1.5rem;
-    font-weight: 100;
+    margin: auto 1.5rem;
+
+
 }
 
 .item__numeration span {
-    font-size: 40px; 
-
+    font-size: 34px; 
+    font-weight: 100;
+    color: rgb(102, 97, 97);
 }
 

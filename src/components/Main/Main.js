@@ -14,19 +14,15 @@ const Main = () => {
     const [showStart, setShowStart] = useState(true);
     const [showTyping, setShowTyping] = useState(false);
     const [showSummary, setShowSummary] = useState(false);
-    const [showMenuButton, setShowMenuButton] = useState(false);
-
     const gameCtx = useContext(GameContext);
 
     const startTypingHandler = () => {
         setShowStart(false);
-        setShowMenuButton(true);
         setShowTyping(true);
     }
 
     const showSummaryHandler = () => {
         setShowSummary(true);
-        setShowMenuButton(false);
     }
 
     const replayHandler = () => {
@@ -39,19 +35,17 @@ const Main = () => {
     const showMenuHandler = () => {
         gameCtx.getTimeHandler(0);
         gameCtx.getMistakesHandler(0);
-        setShowMenuButton(false);
         setShowTyping(false);
         setShowSummary(false);
         setShowStart(true);
     }
-    
+
     return (
         <div className={classes.main}>
-            {showStart && <Start onStart={startTypingHandler} />}
-            {showSummary && <Summary onReplay={replayHandler} onShowMenu={showMenuHandler} />}
-            {showTyping && <Text />}
-            {showTyping && <Typing onEndTyping={showSummaryHandler} />}
-            {showMenuButton && <button onClick={showMenuHandler}>MENU</button>}
+                {showStart && <Start onStart={startTypingHandler} />}
+                {showSummary && <Summary onReplay={replayHandler} onShowMenu={showMenuHandler} />}
+                {showTyping && <Text />}
+                {showTyping && <Typing onEndTyping={showSummaryHandler} onShowMenu={showMenuHandler} />}
         </div>
     )
 }
