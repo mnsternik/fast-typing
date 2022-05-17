@@ -46,7 +46,7 @@ const Summary = (props) => {
                     <input id="name" type="string" ref={usernameRef}></input>
                     <button className={classes.sendBtn}>SAVE</button>
                 </form>
-                :<p>Score sended!</p>}
+                :<p>Score saved!</p>}
             <div className={classes.buttons}>
                 <Button onClick={props.onShowMenu}>MENU</Button>
             </div>
