@@ -13,3 +13,10 @@
 .bolded {
     font-weight: 600;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .start h2 {
+      font-size: 17px;
+    }
+}

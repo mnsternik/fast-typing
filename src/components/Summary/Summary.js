@@ -11,15 +11,29 @@ import classes from './Summary.module.css';
 const Summary = (props) => {
 
     const [scoreSended, setScoreSended] = useState(false);
+    const [isInputValueValid, setIsInputValueValid] = useState(false);
+    const [isInputTouched, setIsInputToched] = useState(false);
 
     const gameCtx = useContext(GameContext);
     const usernameRef = useRef();
-
     const { sendRequest: sendData } = useHttp();
+
+    const hasInputError = isInputTouched && !isInputValueValid;
+    const inputClasses = hasInputError ? `${classes.input} ${classes.inputError}` : `${classes.input}`;
+
+    const inputBlurHandler = (event) => {
+        setIsInputToched(true);
+    }
+
+    const inputChangeHandler = (event) => {
+        setIsInputValueValid(event.target.value.trim() !== '')
+    }
 
     const submitHandler = (event) => {
         event.preventDefault();
-        console.log(gameCtx);
+        if (!isInputValueValid) {
+            return
+        }
         const scoreData = {
             name: usernameRef.current.value,
             time: gameCtx.time,
@@ -39,18 +53,31 @@ const Summary = (props) => {
     return (
         <div className={classes.summary}>
             <h2>Finished!</h2>
-            <p>You wrote <span>{gameCtx.textData.text.length} characters</span> in <span>{gameCtx.time} seconds </span> and made <span>{gameCtx.mistakes} mistakes!</span></p>
+            <div className={classes.card}>
+                <p>Time: <span>{gameCtx.time}</span>s</p>
+                <p>Mistakes: <span>{gameCtx.mistakes}</span></p>
+                <p>Words per minute: <span>{((gameCtx.textData.text.split(' ').length / gameCtx.time) * 60).toFixed()}</span></p>
+                <p>Effectiveness: <span>{(((gameCtx.textData.text.length - gameCtx.mistakes) / gameCtx.textData.text.length) * 100).toFixed(2)}</span></p>
+            </div>
+
             {!scoreSended ?
                 <form className={classes.save} id="save" onSubmit={submitHandler}>
                     <label htmlFor="name">Your name: </label>
-                    <input id="name" type="string" ref={usernameRef}></input>
-                    <button className={classes.sendBtn}>SAVE</button>
+                    <input
+                        id="name"
+                        type="string"
+                        className={inputClasses}
+                        ref={usernameRef}
+                        onBlur={inputBlurHandler}
+                        onChange={inputChangeHandler}
+                    />
+                    <div className={classes.buttons}>
+                        <Button onClick={props.onShowMenu}>Cancel</Button>
+                        <button className={classes.sendBtn}>SAVE</button>
+                    </div>
                 </form>
-                :<p>Score saved!</p>}
-            <div className={classes.buttons}>
-                <Button onClick={props.onShowMenu}>MENU</Button>
-            </div>
 
+                : <p>Score saved!</p>}
         </div>
     )
 };

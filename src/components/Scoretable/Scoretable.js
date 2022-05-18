@@ -54,7 +54,7 @@ const Scoretable = () => {
 
     return (
         <div className={classes.scoretable}>
-            <h1>Best typers</h1>
+            <h1>SCORETABLE</h1>
             {isLoading && <p>Loading...</p>}
             {error && !isLoading && <p>Something went wrong...</p>}
             {scoreItems}

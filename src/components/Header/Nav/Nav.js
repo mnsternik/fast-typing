@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import classes from './Nav.module.css'; 
+import classes from './Nav.module.css';
 
 const Nav = () => {
 
@@ -13,15 +13,11 @@ const Nav = () => {
 
     const stickNavbar = () => {
         if (window.scrollY > 0) {
-            setIsNavSticked(true); 
-            return
-        } 
-        if (window.scrollY === 0) {
-            setIsNavSticked(false);
+            setIsNavSticked(true);
         }
     }
 
-    let navClasses = isNavSticked ? `${classes.nav} ${classes.sticked}` : classes.nav; 
+    let navClasses = isNavSticked ? `${classes.nav} ${classes.sticked}` : classes.nav;
 
     return (
         <nav className={navClasses}>

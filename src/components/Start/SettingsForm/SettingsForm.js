@@ -29,7 +29,7 @@ const SettingsForm = (props) => {
                 <label htmlFor="language">Language: </label>
                 <select id="language" name="language" form="settings" ref={language}>
                     <option value="english">English</option>
-                    <option value="polski">Polski</option>
+                    <option value="polski">Polish</option>
                 </select>
             </div>
             <div className={classes.settingsField}>
