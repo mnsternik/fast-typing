@@ -1,0 +1,24 @@
+.text {
+    width: 75%; 
+    padding: 10px;
+    margin: 50px auto 25px auto;
+    border-top: 1px solid rgb(218, 205, 205); 
+    border-bottom: 1px solid rgb(218, 205, 205); 
+    line-height: 150%;
+    user-select: none;
+
+}
+
+.text h2 {
+    font-size: 15px;
+    color: rgb(78, 72, 72);
+}
+
+.footer {
+    font-size: 12px;
+    text-align: right;
+}
+
+.footer span {
+    font-style: italic;
+}

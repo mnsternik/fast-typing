@@ -1,0 +1,33 @@
+.scoretable {
+    margin: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.scoretable h1 {
+    font-weight: 100;
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    .scoretable h1 {
+        font-size: 20px;
+    }
+
+    .header h2 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .header h1 {
+        font-size: 20px;
+        line-height: 12px; 
+    }
+
+    .header h2 {
+        font-size: 13px;
+        line-height: 12px;    }
+}
