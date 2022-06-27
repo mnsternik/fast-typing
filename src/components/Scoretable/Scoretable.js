@@ -35,7 +35,7 @@ const Scoretable = () => {
     }, [fetchScores]);
 
     let scoreItems = <p>Oops, no scores yet!</p>
-    if (scores.length > 0) {;
+    if (scores.length > 0) {
         scoreItems = scores.map((score, i) => {
             return (
                 <ScoretableItem

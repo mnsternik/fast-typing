@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react'; 
+import { useDispatch, useSelector } from 'react-redux';
 
-import GameContext from '../../store/game-context';
+import { textActions } from '../../store/text';
 import Timer from './Timer/Timer';
 import Button from '../../UI/Button/Button';
 
@@ -8,26 +9,25 @@ import classes from './Typing.module.css';
 
 const Typing = (props) => {
 
-    const gameCtx = useContext(GameContext); 
-
     const [charsWritten, setCharsWritten] = useState(0); 
     const [isFinished, setIsFinished] = useState(false);
+    const textData = useSelector(state => state.text);  
+    const dispatch = useDispatch();
     const textarea = useRef(); 
 
     useEffect(() => {
         textarea.current.scrollIntoView() 
         textarea.current.focus();
         return (() => {
-            gameCtx.getTimeHandler(0); 
+            dispatch(textActions.setMistakes(0)); 
         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch]);
 
     const textChangeHandler = (event) => {
         const userText = event.target.value; 
         setCharsWritten(userText.length); 
-        if (userText.length >= gameCtx.textData.text.length) {
-            finishTyping(userText); 
+        if (userText.length >= textData.text.length) {
+            finishTyping(userText.slice(0, textData.text.length)); //limits userText length to orginal text length 
         }
     };
 
@@ -39,11 +39,13 @@ const Typing = (props) => {
     };
 
     const countMistakes = (userTxt) => {
-        const userText = userTxt.split(''); 
-        const orgText = gameCtx.textData.text.split(''); 
-        orgText.forEach((char, i) => {
-            if (char !== userText[i]) {
-                gameCtx.getMistakesHandler(m => m + 1);
+        const userText = userTxt.split(' '); 
+        const orgText = textData.text.split(' '); 
+        let mistakes = 0; 
+        orgText.forEach((word, i) => {
+            if (word !== userText[i]) {
+                mistakes++; 
+                dispatch(textActions.setMistakes(mistakes));
             }
         })
     };
@@ -51,7 +53,7 @@ const Typing = (props) => {
     return (
         <div className={classes.typing}>
             {!isFinished && <Timer />}
-            <p><span className={classes.typing__item}>CHARACTERS LEFT: </span>{charsWritten}/{gameCtx.textData.text ? gameCtx.textData.text.length : 0 }</p>
+            <p><span className={classes.typing__item}>CHARACTERS: </span>{charsWritten}/{textData.text.length}</p>
             <textarea onChange={textChangeHandler} ref={textarea}/>
             <Button onClick={props.onShowMenu} className={classes.menuBtn}>BACK</Button>
         </div>
