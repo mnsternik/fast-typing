@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { textActions } from '../../store/text';
-import Text from '../Text/Text';
 import Typing from '../Typing/Typing';
 import Start from '../Start/Start';
 import Summary from '../Summary/Summary';
@@ -44,7 +43,6 @@ const Main = () => {
         <div className={classes.main}>
                 {showStart && <Start onStart={startTypingHandler} />}
                 {showSummary && <Summary onReplay={replayHandler} onShowMenu={showMenuHandler} />}
-                {showTyping && <Text/>}
                 {showTyping && <Typing onEndTyping={showSummaryHandler} onShowMenu={showMenuHandler} />}
         </div>
     )

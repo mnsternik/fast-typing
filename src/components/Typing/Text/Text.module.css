@@ -1,11 +1,13 @@
 .text {
-    width: 75%; 
+    width: 100%; 
     padding: 10px;
     margin: 50px auto 25px auto;
     border-top: 1px solid rgb(218, 205, 205); 
     border-bottom: 1px solid rgb(218, 205, 205); 
     line-height: 150%;
     user-select: none;
+    color: black;
+    font-weight: 500;
 
 }
 
