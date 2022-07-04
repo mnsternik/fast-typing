@@ -3,7 +3,8 @@ import useHttp from '../../hooks/useHttp';
 import ScoretableItem from './ScoretableItem/ScoretableItem';
 
 import classes from './Scoretable.module.css';
-
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 const Scoretable = () => {
 
@@ -23,7 +24,7 @@ const Scoretable = () => {
                     mistakes: data[scoreKey].mistakes
                 })
             }
-            const sortedScores = loadedScores.sort((a, b) => b.wordsPerMinute - a.wordsPerMinute)
+            const sortedScores = loadedScores.sort((s1, s2) => s1.wordsPerMinute - s2.wordsPerMinute)
             setScores(sortedScores);
         };
 
@@ -34,12 +35,12 @@ const Scoretable = () => {
     }, [fetchScores]);
 
     const sortByEffectivnes = () => {
-        const sortedScores = scores.slice(); 
+        const sortedScores = scores.slice();
         setScores(sortedScores.sort((s1, s2) => s2.effectiveness - s1.effectiveness));
     };
 
     const sortByWordsPerMinute = () => {
-        const sortedScores = scores.slice(); 
+        const sortedScores = scores.slice();
         setScores(sortedScores.sort((s1, s2) => s2.wordsPerMinute - s1.wordsPerMinute));
     };
 
@@ -65,10 +66,15 @@ const Scoretable = () => {
         <div className={classes.scoretable}>
             <h1>SCORETABLE</h1>
             <p>Sort by:</p>
-            <div className={classes.sortButtons}>
-                <button onClick={sortByEffectivnes}>Effectiveness</button>
-                <button onClick={sortByWordsPerMinute}>Words per minute</button>
-            </div>
+
+                <ButtonGroup variant="text" aria-label="text button group" sx={{
+                    my: 1,
+                    mx: 'auto'
+                }}>
+                    <Button onClick={sortByEffectivnes}>Effectiveness</Button>
+                    <Button onClick={sortByWordsPerMinute}>Words per minute</Button>
+                </ButtonGroup>
+
             {isLoading && <p>Loading...</p>}
             {error && !isLoading && <p>Something went wrong...</p>}
             {scoreItems}

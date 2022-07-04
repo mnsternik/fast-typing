@@ -1,0 +1,15 @@
+.footer {
+    height: 76px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    align-self: flex-end;
+}
+
+.footer p {
+    padding: auto 0;
+    color: rgba(77, 75, 75, 0.603); 
+    font-weight: 600;
+}

@@ -11,6 +11,11 @@
     margin-bottom: 30px;
 }
 
+.sortButtons {
+    margin: 0 10px !important;
+    font-size: 14px !important;
+}
+
 @media only screen and (max-width: 768px) {
     .scoretable h1 {
         font-size: 20px;

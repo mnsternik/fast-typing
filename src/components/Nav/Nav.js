@@ -23,6 +23,7 @@ const Nav = () => {
         <nav className={navClasses}>
             <ul>
                 <li><NavLink activeClassName={classes.active} exact to='/'>Main</NavLink></li>
+                <li><NavLink activeClassName={classes.active} to='/tips'>Tips</NavLink></li>
                 <li><NavLink activeClassName={classes.active} to='/scoretable'>Scoretable</NavLink></li>
             </ul>
         </nav>

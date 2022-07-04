@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { textActions } from '../../store/text';
 import Timer from './Timer/Timer';
-import Button from '../../UI/Button/Button';
 import Text from './Text/Text';
 
+import Button from '@mui/material/Button';
 import classes from './Typing.module.css'; 
 
 const Typing = (props) => {
@@ -69,13 +69,24 @@ const Typing = (props) => {
         props.onEndTyping(); 
     };
 
+    const pasteHandler = (event) => {
+        //event.target.value = '';
+    }
+
     return (
         <div className={classes.typing}>
             <Text coloredText={coloredText}/>
             {!isFinished && <Timer />}
             <p><span className={classes.typing__item}>CHARACTERS: </span>{charsWritten}/{textData.text.length}</p>
-            <textarea onChange={textChangeHandler} ref={textarea}/>
-            <Button onClick={props.onShowMenu} className={classes.menuBtn}>BACK</Button>
+            <textarea onChange={textChangeHandler} ref={textarea} onPaste={pasteHandler}/>
+            <Button 
+                onClick={props.onShowMenu} 
+                className={classes.menuBtn} 
+                variant='contained' 
+                size='large'
+            >
+                BACK
+            </Button>
         </div>
     )
 };

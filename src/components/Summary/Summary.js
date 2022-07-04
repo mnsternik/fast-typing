@@ -1,41 +1,41 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '../../UI/Button/Button';
 import useHttp from '../../hooks/useHttp';
+import { NavLink } from 'react-router-dom';
+
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import classes from './Summary.module.css';
 
 const Summary = (props) => {
 
     const [isScoreSended, setIsScoreSended] = useState(false);
-    const [isInputValueValid, setIsInputValueValid] = useState(false);
-    const [isInputTouched, setIsInputToched] = useState(false);
-
+    const [nameInputValue, setNameInputValue] = useState('');
+    const [isNameInputTouched, setIsInputToched] = useState(false);
     const textData = useSelector(state => state.text);
-
-    const usernameRef = useRef();
     const { sendRequest: sendData } = useHttp();
-
-    const hasInputError = isInputTouched && !isInputValueValid;
-    const inputClasses = hasInputError ? `${classes.input} ${classes.inputError}` : `${classes.input}`;
-
 
     const inputBlurHandler = (event) => {
         setIsInputToched(true);
     };
 
     const inputChangeHandler = (event) => {
-        setIsInputValueValid(event.target.value.trim() !== '')
+        setNameInputValue(event.target.value);
     };
 
     const submitHandler = (event) => {
         event.preventDefault();
 
-        if (!isInputValueValid) {
+        if (!nameInputValue.trim()) {
+            setIsInputToched(true);
             return;
         }
 
         const scoreData = {
-            name: usernameRef.current.value,
+            name: nameInputValue,
             time: textData.time,
             effectiveness: textData.effectiveness,
             wordsPerMinute: textData.wordsPerMinute,
@@ -52,7 +52,6 @@ const Summary = (props) => {
         setIsScoreSended(true);
     };
 
-
     return (
         <div className={classes.summary}>
             <h2>Finished!</h2>
@@ -65,22 +64,51 @@ const Summary = (props) => {
 
             {!isScoreSended ?
                 <form className={classes.save} id="save" onSubmit={submitHandler}>
-                    <label htmlFor="name">Your name: </label>
-                    <input
-                        id="name"
-                        type="string"
-                        className={inputClasses}
-                        ref={usernameRef}
-                        onBlur={inputBlurHandler}
-                        onChange={inputChangeHandler}
-                    />
-                    <div className={classes.buttons}>
-                        <Button onClick={props.onShowMenu}>Cancel</Button>
-                        <button className={classes.sendBtn}>SAVE</button>
-                    </div>
-                </form>
+                    <Box
+                        component="form"
+                        sx={{
+                            my: 1,
+                            color: 'green',
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="name"
+                            label="Your name"
+                            variant="standard"
+                            onChange={inputChangeHandler}
+                            onBlur={inputBlurHandler}
+                            error={!nameInputValue && isNameInputTouched}
+                            helperText={(!nameInputValue && isNameInputTouched) && 'Invalid name.'}
+                        />
+                    </Box>
 
-                : <p>Score saved!</p>}
+                    <Button
+                        onClick={props.onShowMenu}
+                        variant='text'
+                        size='large'
+                        sx={{ mx: 1 }}
+                    >
+                        Cancel
+                    </Button>
+
+                    <Button
+                        className={classes.sendBtn}
+                        variant='contained'
+                        size='large'
+                        sx={{ mx: 1 }}
+                        onClick={submitHandler}
+                    >
+                        SAVE
+                    </Button>
+
+                </form>
+                :  
+                <Stack sx={{ width: 250, mx: 'auto', my: 2 }} spacing={2}>
+                    <Alert severity="success">Score saved! Check it <NavLink className={classes.scoreLink} to='/scoretable'>here</NavLink>.</Alert>
+                </Stack>}
         </div>
     )
 };
